@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InicioActivity"
+    android:background="#F0F8FF">
+
+    <!-- Configuraciones del backgrounded inferior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/Bgr_inicio"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Configuraciones del Título -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tituloInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Txt_tit_login"
+            android:textAppearance="?attr/textAppearanceHeadlineLarge"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <!-- Configuraciones del Subtítulo -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/saludoUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="¡Hola, usuario!"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/txt_subtitulo"/>
+
+    </LinearLayout>
+
+    <!-- Configuraciones del Backgrounded superior -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@drawable/rounded_white_background"
+        android:padding="16dp"
+        android:layout_marginTop="-24dp">
+
+        <!-- Configuraciones del Contenedor de opciones -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:layout_gravity="center_horizontal">
+
+            <!-- Configuraciones de la opción "Agenda tu cita" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAgendarCita"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/bi_color1">
+                <!-- para configurar el contenido -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp">
+
+                    <!-- Para configurar el icono -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/calendar_add_on_24px"
+                        app:tint="@color/i_color1"/>
+
+                    <!-- Para configura el texto -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/Txt_fld_cita"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/txt_contenido"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Configuraciones de la opción "Recetas médicas" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSegundoServicio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/bi_color1">
+
+                <!-- Configuraciones del contenedor "Recetas médicas" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp">
+
+                    <!-- Para configurar el icono -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/prescriptions_24px"
+                        app:tint="@color/i_color1"/>
+
+                    <!-- Para configura el texto -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/Txt_fld_recetas"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/txt_contenido"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Configuraciones de la opción "Especialidades" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEspecialidades"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/bi_color2">
+
+                <!-- Configuraciones del contenedor "Especialidades" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp">
+
+                    <!-- Para configurar el icono -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/health_cross_24px"
+                        app:tint="@color/i_color2"/>
+
+                    <!-- Para configurar el texto -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/txt_fld_especialidades"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/txt_contenido"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Configuraciones de la opción "Cerrar Sesión" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSalir"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/bi_color2">
+
+                <!-- Configuraciones del contenedor "Cerrar Sesión" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp">
+
+                    <!-- Para configurar el icono -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/logout_24px"
+                        app:tint="@color/i_color2"/>
+
+                    <!-- Para configurar el texto -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/txt_fld_csesion"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/txt_contenido"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>
