@@ -35,6 +35,13 @@
 
     <!-- ****************************************** -->
 
+    <string name="Txt_sub_login_doctor">Acceso para Profesionales</string>
+    <string name="Txt_fld_cmp">Número de Colegiatura (CMP)</string>
+    <string name="Txt_btn_registrar_doctor">Registrarme como doctor</string>
+
+    ```
+
+
     <!-- Texto de la interfaz "activity_inicio" -->
 
     <!-- cuerpo de la interfaz "activity_inicio" -->

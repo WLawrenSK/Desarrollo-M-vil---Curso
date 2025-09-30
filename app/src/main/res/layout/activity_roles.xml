@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RolesActivity"
+    android:background="@color/Bgr_inicio">
+
+    <TextView
+        android:id="@+id/textViewTituloRol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido a Salud Móvil"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="64dp" />
+
+    <TextView
+        android:id="@+id/textViewSubtituloRol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona tu rol para continuar"
+        android:textColor="@color/txt_subtitulo"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewTituloRol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toBottomOf="@id/textViewSubtituloRol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomSheetContainer"
+        app:layout_constraintVertical_bias="0.30" />
+
+    <LinearLayout
+        android:id="@+id/bottomSheetContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_white_background"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDoctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soy doctor"
+                android:backgroundTint="@color/Bgr_inicio"
+                android:textColor="@color/white"
+                android:paddingVertical="12dp"
+                android:textSize="18sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPaciente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soy paciente"
+                android:backgroundTint="@color/Bgr_inicio"
+                android:textColor="@color/white"
+                android:paddingVertical="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
