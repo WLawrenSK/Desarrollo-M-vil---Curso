@@ -2,103 +2,100 @@ package com.example.saludmovil;
 
 import static com.example.saludmovil.Validaciones.esValido;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.google.android.material.textfield.TextInputEditText;
+import java.util.Calendar;
 
-// Esta es la pantalla donde los nuevos usuarios pueden registrarse.
 public class RegistrarActivity extends AppCompatActivity {
-    // Declaración de las variables para los campos de texto y los botones.
-    EditText edUsuario, edClave, edCorreo, edConfirmarClave;
-    Button btn;
-    TextView tv;
+
+    // 1. Declaramos las variables para los nuevos campos de texto
+    TextInputEditText edDNI, edNombre, edApellido, edFechaNacimiento, edClave, edConfirmarClave;
+    Button btnRegistrar;
+    TextView tvPacienteExistente;
 
     @Override
-    // Función que se ejecuta al crear la pantalla.
     protected void onCreate(Bundle savedInstanceState) {
-        // Llama a la función original de Android para la creación de la actividad.
         super.onCreate(savedInstanceState);
-        // Habilita el modo para usar toda la pantalla, incluyendo la barra de notificaciones.
-        EdgeToEdge.enable(this);
-        // Establece el diseño de la pantalla (activity_registrar.xml) para esta actividad.
-        setContentView(R.layout.activity_registrar);
-        // Ajusta los márgenes para que el contenido no quede debajo de las barras del sistema (como la de notificaciones).
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            // Obtiene la información sobre el tamaño de las barras del sistema.
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // Aplica el relleno para que el contenido se ajuste correctamente.
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            // Devuelve los ajustes.
-            return insets;
-        });
-        // Vincula las variables con los elementos del diseño de la pantalla usando sus IDs.
-        edUsuario = findViewById(R.id.editTextRegUsuario);
-        edClave = findViewById(R.id.editTextRegClave);
-        edCorreo = findViewById(R.id.editTextRegCorreo);
-        edConfirmarClave = findViewById(R.id.editTextRegConfirmarClave);
-        btn = findViewById(R.id.buttonRegistrar);
-        tv = findViewById(R.id.textViewUsuarioExistente);
+        setContentView(R.layout.activity_registrar); // Esto carga tu nuevo diseño
 
-        // Configura la acción para el texto "Ya soy usuario".
-        tv.setOnClickListener(new View.OnClickListener() {
+        // 2. Vinculamos las variables con los nuevos IDs del diseño
+        edDNI = findViewById(R.id.editTextRegDNI);
+        edNombre = findViewById(R.id.editTextRegNombre);
+        edApellido = findViewById(R.id.editTextRegApellido);
+        edFechaNacimiento = findViewById(R.id.editTextRegFechaNacimiento);
+        edClave = findViewById(R.id.editTextRegClave);
+        edConfirmarClave = findViewById(R.id.editTextRegConfirmarClave);
+        btnRegistrar = findViewById(R.id.buttonRegistrar);
+        tvPacienteExistente = findViewById(R.id.textViewPacienteExistente);
+
+        // La lógica para ir al Login sigue igual
+        tvPacienteExistente.setOnClickListener(new View.OnClickListener() {
             @Override
-            // Lo que sucede al hacer clic.
             public void onClick(View view) {
-                // Inicia la pantalla de inicio de sesión.
                 startActivity(new Intent(RegistrarActivity.this, LoginActivity.class));
             }
         });
 
-        // Configura la acción para el botón de "Registrarse".
-        btn.setOnClickListener(new View.OnClickListener() {
+        // Lógica para mostrar el calendario al hacer clic en el campo de fecha
+        edFechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
-            // Lo que sucede al hacer clic.
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int anio = c.get(Calendar.YEAR);
+                int mes = c.get(Calendar.MONTH);
+                int dia = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RegistrarActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        edFechaNacimiento.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                }, anio, mes, dia);
+                datePickerDialog.show();
+            }
+        });
+
+
+        // 3. Lógica actualizada para el botón de "Registrarse"
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                // Obtiene el texto ingresado por el usuario en cada campo.
-                String usuario = edUsuario.getText().toString();
-                String correo = edCorreo.getText().toString();
+                // Obtenemos el texto de los nuevos campos
+                String dni = edDNI.getText().toString();
+                String nombre = edNombre.getText().toString();
+                String apellido = edApellido.getText().toString();
+                String fechaNacimiento = edFechaNacimiento.getText().toString();
                 String clave = edClave.getText().toString();
                 String confirmarClave = edConfirmarClave.getText().toString();
-                // Crea una instancia de la base de datos para guardar los datos.
-                BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "saludmovil", null, 1);
-                // Verifica si algún campo está vacío.
-                if (usuario.length() == 0 || correo.length() == 0 || clave.length() == 0 || confirmarClave.length() == 0){
-                    // Muestra un mensaje si hay campos vacíos.
+                BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
+
+                // Validamos que los nuevos campos no estén vacíos
+                if (dni.length() == 0 || nombre.length() == 0 || apellido.length() == 0 || fechaNacimiento.length() == 0 || clave.length() == 0 || confirmarClave.length() == 0){
                     Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Verifica si la contraseña y la confirmación de la contraseña son iguales.
-                    if (clave.compareTo(confirmarClave)==0){
-                        // Verifica si la contraseña cumple con los requisitos establecidos en la clase VALIDACIONES.JAVA
+                    if (clave.equals(confirmarClave)){
                         if (esValido(clave)){
-                            // Si todo es correcto, registra al usuario en la base de datos.
-                            bd.registrar(usuario, correo, clave);
-                            // Muestra un mensaje de éxito.
+                            // Llamamos al método registrar con los nuevos parámetros
+                            bd.registrar(dni, nombre, apellido, fechaNacimiento, clave);
                             Toast.makeText(getApplicationContext(), "Registro exitoso", Toast.LENGTH_SHORT).show();
-                            // Lleva al usuario a la pantalla de inicio de sesión.
                             startActivity(new Intent(RegistrarActivity.this, LoginActivity.class));
                         } else {
-                            // Muestra un mensaje si la contraseña no cumple con los requisitos.
                             Toast.makeText(getApplicationContext(),
-                                    "La contraseña debe tener minimo 8 caracteres, una letra, un numero y un caracter especial", Toast.LENGTH_SHORT).show();
+                                    "La contraseña debe tener minimo 8 caracteres, una letra, un numero y un caracter especial", Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        // Muestra un mensaje si las contraseñas no coinciden.
                         Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
     }
-
-
 }

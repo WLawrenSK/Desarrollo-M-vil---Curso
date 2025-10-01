@@ -39,4 +39,5 @@ public class Validaciones {
             return false; // Si alguna bandera no es 1, la contraseña no es válida.
         }
     }
+
 }

@@ -1,78 +1,97 @@
 package com.example.saludmovil;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-// Esta es la pantalla de inicio de nuestra aplicación.
 public class InicioActivity extends AppCompatActivity {
 
+    ImageButton btnPerfil; // Variable para el boton de perfil
+
+
     @Override
-    // Esta función se ejecuta cuando se crea la pantalla.
     protected void onCreate(Bundle savedInstanceState) {
-        // Llama a la función original para que la pantalla se inicie correctamente.
         super.onCreate(savedInstanceState);
-        // Esto hace que la aplicación use todo el espacio de la pantalla, incluyendo las barras del sistema (donde están la hora y la batería).
-        EdgeToEdge.enable(this);
-        // Aquí le decimos a la aplicación qué diseño de pantalla debe usar (el archivo activity_inicio.xml).
         setContentView(R.layout.activity_inicio);
-        // Esto se encarga de ajustar el contenido para que no se superponga con las barras del sistema, como la barra de notificaciones arriba.
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            // Obtiene la información sobre las barras del sistema.
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // Ajusta el espacio alrededor de la vista principal para que el contenido se vea bien.
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            // Devuelve los ajustes aplicados.
-            return insets;
+
+        SharedPreferences sp = getSharedPreferences("datos", MODE_PRIVATE);
+        // Usamos la llave "usuario_dni" que definimos en el LoginActivity
+        String dni = sp.getString("usuario_dni", "").toString();
+        btnPerfil = findViewById(R.id.buttonMiPerfil);
+        // --- CÓDIGO NUEVO PARA VERIFICAR PERFIL ---
+        BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
+        if (!bd.isPerfilCompleto(dni)) {
+            // Si el perfil NO está completo, mostramos el diálogo
+            mostrarDialogoCompletarPerfil(dni);
+        }
+
+        btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InicioActivity.this, PerfilPacienteActivity.class);
+                intent.putExtra("usuario_dni", dni);
+                startActivity(intent);
+            }
         });
 
 
-        // Aquí guardamos datos simples, como un nombre de usuario, para poder usarlos en otras partes de la app.
-        SharedPreferences sp = getSharedPreferences("datos", MODE_PRIVATE);
-        // Obtiene el nombre del usuario guardado; si no hay, usa un espacio vacío.
-        String usuario = sp.getString("usuario", "").toString();
-        // Muestra un pequeño mensaje de bienvenida en la parte de abajo de la pantalla.
-        Toast.makeText(getApplicationContext(), "Bienvenido " + usuario, Toast.LENGTH_SHORT).show();
-
-
-        // Busca el botón "Salir" en el diseño de la pantalla.
+        // El resto de tu código para los botones
         CardView salir = findViewById(R.id.cardSalir);
-        // Configura qué hacer cuando el usuario toque el botón "Salir".
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
-            // Lo que pasa cuando se toca el botón.
             public void onClick(View view) {
-                // Prepara una herramienta para borrar los datos guardados.
                 SharedPreferences.Editor editor = sp.edit();
-                // Borra toda la información guardada, como el nombre de usuario.
                 editor.clear();
-                // Confirma el borrado de la información.
                 editor.apply();
-                // Envía al usuario de vuelta a la pantalla de inicio de sesión.
                 startActivity(new Intent(InicioActivity.this, LoginActivity.class));
             }
         });
 
-        // Busca el botón de "Especialidades" en el diseño de la pantalla.
         CardView especialidades = findViewById(R.id.cardEspecialidades);
-        // Configura qué hacer cuando el usuario toque el botón "Especialidades".
         especialidades.setOnClickListener(new View.OnClickListener(){
             @Override
-            // Lo que pasa cuando se toca el botón.
             public void onClick(View view) {
-                // Envía al usuario a la pantalla donde puede ver las especialidades médicas.
                 startActivity(new Intent(InicioActivity.this, EspecialidadesActivity.class));
             }
         });
+    }
+
+    // --- MÉTODO NUEVO PARA MOSTRAR EL DIÁLOGO ---
+    private void mostrarDialogoCompletarPerfil(String dni) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Perfil Médico Incompleto");
+        builder.setMessage("Para brindarte un mejor servicio y que los doctores puedan atenderte adecuadamente, por favor completa tu perfil médico.");
+
+        // Botón para ir a completar el perfil
+        builder.setPositiveButton("Completar Perfil", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Creamos un Intent para ir a PerfilPacienteActivity
+                Intent intent = new Intent(InicioActivity.this, PerfilPacienteActivity.class);
+                // Le pasamos el DNI a la siguiente pantalla para que sepa de quién es el perfil
+                intent.putExtra("usuario_dni", dni);
+                startActivity(intent);
+            }
+        });
+
+        // Botón para hacerlo más tarde
+        builder.setNegativeButton("Más Tarde", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false); // Impide que el usuario cierre el diálogo tocando fuera de él
+        dialog.show();
     }
 }

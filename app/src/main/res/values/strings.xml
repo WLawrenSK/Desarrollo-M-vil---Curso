@@ -12,6 +12,7 @@
 
     <!-- cuerpo de la interfaz "activity_login" -->
     <string name="Txt_fld_usuario">Usuario</string>
+    <string name="Txt_fld_dni">DNI</string>
     <string name="Txt_fld_contrasena">Contraseña</string>
     <string name="Txt_btn_iniciar">Iniciar Sesión</string>
 
@@ -45,6 +46,7 @@
     <!-- Texto de la interfaz "activity_inicio" -->
 
     <!-- cuerpo de la interfaz "activity_inicio" -->
+    <string name="Txt_fld_mi_perfil">Mi Perfil</string>
     <string name="Txt_fld_cita">Agenda tu cita</string>
     <string name="Txt_fld_recetas">Recetas Médicas</string>
     <string name="txt_fld_especialidades">Especialidades</string>

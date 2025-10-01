@@ -56,7 +56,7 @@ public class LoginDoctorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String cmp = edCamp.getText().toString();
                 String clave = edClave.getText().toString();
-                BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "saludmovil", null, 1);
+                BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
                 if (cmp.length() == 0 || clave.length()==0){
                     Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
                 } else {

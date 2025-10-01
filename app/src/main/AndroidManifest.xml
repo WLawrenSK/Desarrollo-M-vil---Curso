@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludMovil">
         <activity
+            android:name=".PerfilPacienteActivity"
+            android:exported="false" />
+        <activity
             android:name=".InicioDoctorActivity"
             android:exported="false" />
         <activity

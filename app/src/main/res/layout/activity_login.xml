@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="?attr/colorSurface">
-    <!-- Configuraciones del Título -->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15" />
-    <!-- Configuraciones del subtítulo-->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -32,7 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-    <!-- Configuraciones del CardView -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,27 +43,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
-        <!-- -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="24dp">
-            <!-- Configuración del edit text del campo usuario-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutUsuario"
+                android:id="@+id/textInputLayoutDni"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Txt_fld_usuario"
-                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                android:hint="@string/Txt_fld_dni"
+                app:startIconDrawable="@drawable/ic_baseline_badge_24">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextLoginUsuario"
+                    android:id="@+id/editTextLoginDni"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="number"
+                    android:maxLength="8"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <!-- Configuración del edit text del campo contraseña-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutClave"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -82,7 +77,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
-            <!-- Configuraciones del botón "Iniciar Sesión" -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
@@ -90,7 +84,6 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/Txt_btn_iniciar"
                 android:textSize="20sp" />
-            <!-- Configuraciones del botón "Regístrate" -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/textViewNuevoUsuario"
                 style="@style/Widget.Material3.Button.TextButton"
@@ -98,8 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/Txt_fld_registrate"
-                android:textSize="16sp"
-                android:textColor="?attr/colorPrimary" />
+                android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

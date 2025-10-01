@@ -69,7 +69,7 @@ public class RegistrarDoctorPaso2Activity extends AppCompatActivity {
                 }
                 // Si esta ok guardamos los datos en la base de datos
 
-                BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "saludmovil", null, 1);
+                BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
 
                 // Aca escribiremos el metodo registrarDoctor pero saldra error porque aun no lo creamos en la clase BaseDeDatos
 
