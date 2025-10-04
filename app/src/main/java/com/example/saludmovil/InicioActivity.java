@@ -3,7 +3,9 @@ package com.example.saludmovil;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -12,9 +14,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import java.net.URI;
+
 public class InicioActivity extends AppCompatActivity {
 
     ImageButton btnPerfil; // Variable para el boton de perfil
+    CardView cardUbicanos; // Boton para ubicar la clinica
 
 
     @Override
@@ -26,6 +31,10 @@ public class InicioActivity extends AppCompatActivity {
         // Usamos la llave "usuario_dni" que definimos en el LoginActivity
         String dni = sp.getString("usuario_dni", "").toString();
         btnPerfil = findViewById(R.id.buttonMiPerfil);
+        cardUbicanos = findViewById(R.id.cardUbicanos);
+
+
+
         // --- CÓDIGO NUEVO PARA VERIFICAR PERFIL ---
         BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
         if (!bd.isPerfilCompleto(dni)) {
@@ -39,6 +48,33 @@ public class InicioActivity extends AppCompatActivity {
                 Intent intent = new Intent(InicioActivity.this, PerfilPacienteActivity.class);
                 intent.putExtra("usuario_dni", dni);
                 startActivity(intent);
+            }
+        });
+
+
+        cardUbicanos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String latitud = "-11.986309696891086";
+                String longitud = "-77.0079814697766";
+                String etiqueta = "Clinica";
+
+                // Creamos la URI
+
+                String uri = "geo:" + latitud + "," + longitud + "?q=" + latitud + "," + longitud + "(" + etiqueta + ")";
+                Log.d("BotonUbicanos", "URI generada: " + uri);
+                // Creamos el intent con la accion "Ver" y la uri del mapa
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+
+
+                if (intent.resolveActivity(getPackageManager())!=null){
+                    startActivity(intent);
+
+                }else{
+                    // Si no tiene google maps instalado
+                    Toast.makeText(getApplicationContext(), "No se encontro Google Maps.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
