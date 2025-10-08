@@ -55,26 +55,8 @@ public class InicioActivity extends AppCompatActivity {
         cardUbicanos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String latitud = "-11.986309696891086";
-                String longitud = "-77.0079814697766";
-                String etiqueta = "Clinica";
-
-                // Creamos la URI
-
-                String uri = "geo:" + latitud + "," + longitud + "?q=" + latitud + "," + longitud + "(" + etiqueta + ")";
-                Log.d("BotonUbicanos", "URI generada: " + uri);
-                // Creamos el intent con la accion "Ver" y la uri del mapa
-
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-
-
-                if (intent.resolveActivity(getPackageManager())!=null){
-                    startActivity(intent);
-
-                }else{
-                    // Si no tiene google maps instalado
-                    Toast.makeText(getApplicationContext(), "No se encontro Google Maps.", Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(InicioActivity.this, UbicanosMapActivity.class);
+                startActivity(intent);
             }
         });
 

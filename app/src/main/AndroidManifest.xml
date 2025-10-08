@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludMovil">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCuARYJ_sbl_FPYl3LU2VgjT3A56vAjS-0" />
+
+        <activity
+            android:name=".UbicanosMapActivity"
+            android:exported="false" />
         <activity
             android:name=".PerfilPacienteActivity"
             android:exported="false" />
@@ -48,11 +57,5 @@
             android:name=".LoginActivity"
             android:exported="false" />
     </application>
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="geo" />
-        </intent>
-    </queries>
 
 </manifest>
