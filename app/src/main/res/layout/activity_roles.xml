@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RolesActivity"
+    android:background="@color/gris_fondo_app">
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logito4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTituloRol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:layout_marginHorizontal="32dp"
+        android:text="Bienvenido a Salud Móvil"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+        android:textColor="@color/texto_principal" android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewLogo" />
+
+    <TextView
+        android:id="@+id/textViewSubtituloRol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="40dp"
+        android:text="Tu posta de confianza, ahora en tu bolsillo."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:textColor="@color/texto_secundario" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTituloRol" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_roles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.Large.Top"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/blanco"> <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="48dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona tu rol para ingresar"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/texto_secundario" android:layout_marginBottom="24dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonDoctor"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Soy Doctor"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
+            android:backgroundTint="@color/azul_primario"/> <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonPaciente"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Soy Paciente"
+        android:textColor="@color/azul_primario" app:strokeColor="@color/azul_primario" android:paddingVertical="14dp"
+        android:textSize="16sp"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"/>
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

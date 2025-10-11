@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SaludMovil">
+        <activity
+            android:name=".RitmoCardiacoActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCuARYJ_sbl_FPYl3LU2VgjT3A56vAjS-0" />
+
+        <activity
+            android:name=".UbicanosMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InicioDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarDoctorPaso2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarDoctorPaso1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RolesActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EspecialidadesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InicioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

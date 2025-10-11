@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SaludMovil" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/epundaslab</item>
+
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#E3F2FD</item>
+        <item name="colorOnSecondaryContainer">#2196F3</item>
+        <item name="colorTertiaryContainer">#E0F2F7</item>
+        <item name="colorOnTertiaryContainer">#00BCD4</item>
+        <item name="colorSurfaceContainerHigh">#F0F8FF</item>
+        <item name="colorSurfaceContainer">#FFFFFF</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.RoundedBottom" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Large.Top" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="Theme.SaludMovil" parent="Base.Theme.SaludMovil" />
+</resources>

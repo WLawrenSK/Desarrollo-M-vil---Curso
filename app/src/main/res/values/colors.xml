@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Lista de colores utilizados-->
+    <color name="purple_200">#FFBB86FC</color>">
+    <color name="purple_500">#FF6200EE</color>">
+    <color name="purple_700">#FF3700B3</color>">
+    <color name="teal_200">#FF03DAC5</color>">
+    <color name="teal_700">#FF018786</color>">
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorPrimaryDark">#3262C4</color>
+
+    <color name="Bgr_inicio">#3F51B5</color>
+    <color name="txt_contenido">#424242</color>
+    <color name="txt_subtitulo">#BBDEFB</color>
+
+    <color name="bi_color1">#E3F2FD</color>
+    <color name="bi_color2">#E0F2F7</color>
+
+    <color name="i_color1">#2196F3</color>
+    <color name="i_color2">#00BCD4</color>
+
+    <color name="colorRed">#C11515</color>
+    <color name="purpleDark">#FF210642</color>
+    <color name="yellowLight">#fff777</color>
+
+
+    <color name="azul_primario">#0D47A1</color> <color name="azul_secundario">#1565C0</color> <color name="azul_claro_fondo">#E3F2FD</color> <color name="blanco">#FFFFFF</color>
+    <color name="gris_fondo_app">#F5F5F5</color> <color name="texto_principal">#212121</color> <color name="texto_secundario">#757575</color> <color name="blanco_transparente_subtitulo">#B3FFFFFF</color>
+</resources>
