@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris_fondo_app"
+    tools:context=".RitmoCardiacoActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarRitmoCardiaco"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title="Medir Ritmo Cardíaco"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        android:background="@color/blanco"
+        app:titleTextColor="@color/texto_principal"
+        android:elevation="4dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/camera_preview_container"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbarRitmoCardiaco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextureView
+            android:id="@+id/camera_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/instructions_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:text="En un lugar bien iluminado, cubre suavemente la cámara trasera con tu dedo."
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="@color/texto_secundario"
+        app:layout_constraintTop_toBottomOf="@id/camera_preview_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <RelativeLayout
+        android:id="@+id/heart_container"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintTop_toBottomOf="@id/instructions_text"
+        app:layout_constraintBottom_toTopOf="@id/btnIniciarMedicion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/heart_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/health_metrics_24px"
+            app:tint="@color/azul_claro_fondo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/bpm_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-- PPM"
+                android:textAppearance="?attr/textAppearanceHeadlineLarge"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Presiona para iniciar"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/texto_secundario"/>
+
+            <TextView
+                android:id="@+id/signal_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Señal: --"
+                tools:text="Señal: 180"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/texto_secundario"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIniciarMedicion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Iniciar Medición"
+        android:backgroundTint="@color/azul_primario"
+        android:paddingVertical="14dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

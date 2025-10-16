@@ -26,4 +26,8 @@
     <color name="colorRed">#C11515</color>
     <color name="purpleDark">#FF210642</color>
     <color name="yellowLight">#fff777</color>
+
+
+    <color name="azul_primario">#0D47A1</color> <color name="azul_secundario">#1565C0</color> <color name="azul_claro_fondo">#E3F2FD</color> <color name="blanco">#FFFFFF</color>
+    <color name="gris_fondo_app">#F5F5F5</color> <color name="texto_principal">#212121</color> <color name="texto_secundario">#757575</color> <color name="blanco_transparente_subtitulo">#B3FFFFFF</color>
 </resources>

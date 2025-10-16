@@ -1,33 +1,71 @@
 package com.example.saludmovil;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView; // Importante: puede ser MaterialCardView también
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-// Esta es la pantalla que muestra las especialidades médicas.
+import com.google.android.material.card.MaterialCardView;
+
 public class EspecialidadesActivity extends AppCompatActivity {
 
     @Override
-    // Esta función se ejecuta cuando se crea la pantalla.
     protected void onCreate(Bundle savedInstanceState) {
-        // Llama a la función original de Android para que la actividad se inicie correctamente.
         super.onCreate(savedInstanceState);
-        // Permite que la aplicación use todo el espacio de la pantalla, incluyendo las áreas del sistema como la barra de estado.
         EdgeToEdge.enable(this);
-        // Asigna el diseño de la pantalla (el archivo activity_especialidades.xml) a esta actividad.
         setContentView(R.layout.activity_especialidades);
-        // Ajusta el diseño para que el contenido no quede oculto debajo de las barras del sistema.
+
+        // --- INICIO DE LA MODIFICACIÓN ---
+
+        // 1. Encontrar cada CardView por su ID del archivo XML
+        MaterialCardView cardMedicinaGeneral = findViewById(R.id.cardMedicinaGeneral);
+        MaterialCardView cardPediatria = findViewById(R.id.cardPediatria);
+        MaterialCardView cardCardiologia = findViewById(R.id.cardCardiologia);
+        MaterialCardView cardDermatologia = findViewById(R.id.cardDermatologia);
+        MaterialCardView cardGinecologia = findViewById(R.id.cardGinecologia);
+        MaterialCardView cardOdontologia = findViewById(R.id.cardOdontologia);
+        MaterialCardView cardPsicologia = findViewById(R.id.cardPsicologia);
+        MaterialCardView cardNutricion = findViewById(R.id.cardNutricion);
+
+        // 2. Asignar un "listener" a cada tarjeta para detectar el clic
+        cardMedicinaGeneral.setOnClickListener(v -> abrirDetalle("Medicina General"));
+        cardPediatria.setOnClickListener(v -> abrirDetalle("Pediatría"));
+        cardCardiologia.setOnClickListener(v -> abrirDetalle("Cardiología"));
+        cardDermatologia.setOnClickListener(v -> abrirDetalle("Dermatología"));
+        cardGinecologia.setOnClickListener(v -> abrirDetalle("Ginecología"));
+        cardOdontologia.setOnClickListener(v -> abrirDetalle("Odontología"));
+        cardPsicologia.setOnClickListener(v -> abrirDetalle("Psicología"));
+        cardNutricion.setOnClickListener(v -> abrirDetalle("Nutrición"));
+
+
+        // --- FIN DE LA MODIFICACIÓN ---
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            // Obtiene la información sobre el tamaño de las barras del sistema (superior, inferior, izquierda, derecha).
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // Aplica un relleno al diseño principal para que no se superponga con las barras del sistema.
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            // Devuelve los ajustes de insets.
             return insets;
         });
+    }
+
+    /**
+     * Este método crea y lanza la actividad de detalle.
+     * @param nombreEspecialidad El nombre de la especialidad que se mostrará en la siguiente pantalla.
+     */
+    private void abrirDetalle(String nombreEspecialidad) {
+        // Creamos un "Intent", que es la forma de comunicar que queremos abrir otra pantalla.
+        Intent intent = new Intent(EspecialidadesActivity.this, DetallleEspecialidadActivity.class);
+
+        // Añadimos información extra al Intent. En este caso, el nombre de la especialidad.
+        // La otra pantalla usará esta "llave" ("NOMBRE_ESPECIALIDAD") para obtener el valor.
+        intent.putExtra("NOMBRE_ESPECIALIDAD", nombreEspecialidad);
+
+        // Iniciamos la nueva actividad.
+        startActivity(intent);
     }
 }

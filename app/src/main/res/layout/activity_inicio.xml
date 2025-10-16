@@ -7,15 +7,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".InicioActivity"
-    android:background="#F0F8FF">
+    android:background="@color/gris_fondo_app">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/Bgr_inicio"
+        android:background="@color/azul_primario"
         android:padding="24dp">
 
+        <ImageButton
+            android:id="@+id/buttonRitmoCardiaco"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Medir Ritmo Cardíaco"
+            android:src="@drawable/health_metrics_24px"
+            app:tint="@color/blanco" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,9 +37,9 @@
                 android:id="@+id/tituloInicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Txt_tit_login"
+                android:text="Salud Móvil"
                 android:textAppearance="?attr/textAppearanceHeadlineLarge"
-                android:textColor="@color/white"
+                android:textColor="@color/blanco"
                 android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -39,7 +49,7 @@
                 android:layout_marginTop="8dp"
                 android:text="¡Hola, usuario!"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:textColor="@color/txt_subtitulo" />
+                android:textColor="@color/blanco_transparente_subtitulo" />
         </LinearLayout>
 
         <ImageButton
@@ -51,7 +61,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Mi Perfil"
             android:src="@drawable/ic_baseline_person_24"
-            app:tint="@color/white" />
+            app:tint="@color/blanco" />
 
     </RelativeLayout>
 
@@ -63,204 +73,269 @@
         android:background="@drawable/rounded_white_background"
         android:padding="16dp">
 
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:alignmentMode="alignMargins"
-            android:columnCount="2"
-            android:columnOrderPreserved="false"
-            android:rowCount="3">
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Tus Citas Pendientes"
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold"/>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardAgendarCita"
-                android:layout_width="0dp"
+                android:id="@+id/cardProximaCita"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
                 android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/bi_color1"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp">
-
+                app:cardBackgroundColor="@color/blanco"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="24dp">
-
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/calendar_add_on_24px"
-                        app:tint="@color/i_color1" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_baseline_calendar_today_24"
+                        app:tint="@color/azul_secundario"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_cita"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lun, 20 Oct - 10:30 AM"
+                            android:textColor="@color/texto_principal"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dr. Alberto García (Cardiología)"
+                            android:textColor="@color/texto_secundario"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"/>
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardUbicanos"
-                android:layout_width="0dp"
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/bi_color1"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp">
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:layout_marginTop="16dp"
+                android:rowCount="3">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="24dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAgendarCita"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/calendar_add_on_24px"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Agendar Cita"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_location_on_24"
-                        app:tint="@color/i_color1" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardUbicanos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Ubícanos"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_ubicanos"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardEspecialidades"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/health_cross_24px"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Especialidades"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardRecetasMedicas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/prescriptions_24px"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Recetas Médicas"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEspecialidades"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/bi_color2"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMisCitas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/event_24px"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Mis Citas"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="24dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSalir"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/azul_claro_fondo"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/logout_24px"
+                            app:tint="@color/azul_secundario" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Cerrar Sesión"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/health_cross_24px"
-                        app:tint="@color/i_color2" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/txt_fld_especialidades"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardRecetasMedicas"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/bi_color2"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="24dp">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/prescriptions_24px"
-                        app:tint="@color/i_color2" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_recetas"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSalir"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/bi_color2"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                android:layout_columnSpan="2">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="24dp">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/logout_24px"
-                        app:tint="@color/i_color2" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/txt_fld_csesion"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-        </GridLayout>
-
+            </GridLayout>
+        </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

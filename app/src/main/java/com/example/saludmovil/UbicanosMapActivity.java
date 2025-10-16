@@ -1,11 +1,12 @@
 package com.example.saludmovil;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.maps.android.PolyUtil;
 
 import org.json.JSONException;
@@ -38,15 +41,24 @@ public class UbicanosMapActivity extends AppCompatActivity implements OnMapReady
     private GoogleMap miMapa;
     private FusedLocationProviderClient clienteUbicacion;
     private RequestQueue colaDePeticiones;
+    private MaterialToolbar toolbar;
+    private MaterialButton btnObtenerDirecciones;
 
     private final LatLng UBICACION_CLINICA = new LatLng(-12.001943, -76.999517);
-    private final String NOMBRE_CLINICA = "Clinica SaludMovil";
+    private final String NOMBRE_CLINICA = "Posta Médica Salud Móvil";
     private static final int CODIGO_PERMISO_UBICACION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicanos_map);
+
+        toolbar = findViewById(R.id.toolbarMap);
+        btnObtenerDirecciones = findViewById(R.id.btnObtenerDirecciones);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         clienteUbicacion = LocationServices.getFusedLocationProviderClient(this);
         colaDePeticiones = Volley.newRequestQueue(this);
@@ -56,25 +68,34 @@ public class UbicanosMapActivity extends AppCompatActivity implements OnMapReady
             mapFragment.getMapAsync(this);
         }
 
-        ImageButton btnAtras = findViewById(R.id.buttonAtrasMap);
-        btnAtras.setOnClickListener(v -> finish());
+        btnObtenerDirecciones.setOnClickListener(v -> {
+            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + UBICACION_CLINICA.latitude + "," + UBICACION_CLINICA.longitude);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            } else {
+                Toast.makeText(this, "Google Maps no está instalado.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         miMapa = googleMap;
         miMapa.addMarker(new MarkerOptions().position(UBICACION_CLINICA).title(NOMBRE_CLINICA));
+
+
         miMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(UBICACION_CLINICA, 15f));
 
         activarMiUbicacion();
     }
 
+    // El resto de los métodos se mantienen exactamente igual
     private void activarMiUbicacion() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (miMapa != null) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
                 miMapa.setMyLocationEnabled(true);
                 obtenerUbicacionYTrazarRuta();
             }
@@ -117,11 +138,15 @@ public class UbicanosMapActivity extends AppCompatActivity implements OnMapReady
         JsonObjectRequest peticionJson = new JsonObjectRequest(Request.Method.GET, url, null,
                 respuesta -> {
                     try {
-                        JSONObject ruta = respuesta.getJSONArray("routes").getJSONObject(0);
-                        JSONObject polilineaResumen = ruta.getJSONObject("overview_polyline");
-                        String polilineaCodificada = polilineaResumen.getString("points");
-                        List<LatLng> listaDePuntos = PolyUtil.decode(polilineaCodificada);
-                        miMapa.addPolyline(new PolylineOptions().addAll(listaDePuntos).width(12).color(Color.BLUE).geodesic(true));
+                        if (respuesta.getJSONArray("routes").length() > 0) {
+                            JSONObject ruta = respuesta.getJSONArray("routes").getJSONObject(0);
+                            JSONObject polilineaResumen = ruta.getJSONObject("overview_polyline");
+                            String polilineaCodificada = polilineaResumen.getString("points");
+                            List<LatLng> listaDePuntos = PolyUtil.decode(polilineaCodificada);
+                            miMapa.addPolyline(new PolylineOptions().addAll(listaDePuntos).width(12).color(Color.BLUE).geodesic(true));
+                        } else {
+                            Toast.makeText(this, "No se encontraron rutas.", Toast.LENGTH_SHORT).show();
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(this, "Error al procesar la ruta.", Toast.LENGTH_SHORT).show();

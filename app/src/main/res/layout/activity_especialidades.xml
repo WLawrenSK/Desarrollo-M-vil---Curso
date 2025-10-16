@@ -1,229 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".EspecialidadesActivity"
-    android:background="#F0F8FF">
+    android:background="@color/gris_fondo_app"
+    tools:context=".EspecialidadesActivity">
 
-    <!-- Configuraciones del backgrounded inferior -->
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#3F51B5"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
 
-        <!-- Configuraciones del Título -->
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tituloEspecialistas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Txt_tit_Especialidades"
-            android:textAppearance="?attr/textAppearanceHeadlineLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/header_curvo_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <!-- Configuraciones del Subtítulo -->
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tituloEspecialistasTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/Txt_sub_Especialdiades"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:textColor="@color/txt_subtitulo"/>
+            <TextView
+                android:id="@+id/tituloEspecialistas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Txt_tit_Especialidades"
+                android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                android:textColor="@color/blanco"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/subtituloEspecialistas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/Txt_sub_Especialdiades"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/blanco_transparente_subtitulo"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    </LinearLayout>
-
-    <!-- Configuraciones del Backgrounded superior -->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@drawable/rounded_white_background"
-        android:padding="16dp"
-        android:layout_marginTop="-24dp">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Configuraciones del Contenedor de opciones -->
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="3"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:layout_gravity="center_horizontal">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
 
-            <!-- Configuraciones de la opción "Medico General" -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardMedicos"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/bi_color1">
-
-                <!-- Cuadro de fondo -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <!-- Para configurar el icono -->
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/medicalservices24px"
-                        app:tint="@color/i_color1"/>
-
-                    <!-- Para configura el texto -->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMedicinaGeneral"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_medicinaGeneral"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/medicalservices24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Medicina General"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPediatria"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/pediatrics_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Pediatría"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-            <!-- Configuraciones de la opción "Odontología" -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardDentistas"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/bi_color2">
-
-                <!-- Cuadro de fondo -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <!-- Para configurar el icono -->
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/dentistry_24px"
-                        app:tint="@color/i_color2"/>
-
-                    <!-- Para configurar el texto -->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCardiologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_odontologia"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/cardiology_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Cardiología"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardDermatologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/dermatology_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Dermatología"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-            <!-- Configuraciones de la opción "Nutricionista" -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardNutricionistas"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/bi_color1">
-
-                <!-- Cuadro de fondo -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <!-- Para configurar el icono -->
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/nutrition_24px"
-                        app:tint="@color/i_color1"/>
-
-                    <!-- Para configurar el texto -->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGinecologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_nutricionista"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/gynecology_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Ginecología"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardOdontologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/dentistry_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Odontología"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-            <!-- Configuraciones de la opción "Pediatría" -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardCirujano"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                app:cardBackgroundColor="@color/bi_color2">
-
-                <!-- Cuadro de fondo -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="24dp">
-
-                    <!-- Para configurar el icono -->
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/pediatrics_24px"
-                        app:tint="@color/i_color2"/>
-
-                    <!-- Para configurar el texto -->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPsicologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/Txt_fld_pediatria"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="@color/txt_contenido"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/psychology_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Psicología"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNutricion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/nutrition_24px"
+                            app:tint="@color/azul_primario"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Nutrición"
+                            android:textAlignment="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/texto_principal"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-        </GridLayout>
-    </ScrollView>
-</LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

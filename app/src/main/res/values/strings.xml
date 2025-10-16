@@ -68,4 +68,23 @@
     <string name="Txt_fld_pediatria">Pediatra</string>
     <string name="Txt_fld_nutricionista">Nutricionista</string>
 
+    <!-- Cambios -->
+    <string-array name="opciones_sexo">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="opciones_tipo_sangre">
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
+
+
 </resources>
