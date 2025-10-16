@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris_fondo_app"
+    tools:context=".DetallleEspecialidadActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul_primario"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Medicina General"
+            app:titleTextColor="@color/white"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sobre la Especialidad"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/azul_primario"/>
+
+                    <TextView
+                        android:id="@+id/tvDescripcionEspecialidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="El médico general es el profesional de la salud que se encarga del primer contacto con el paciente. Su rol es fundamental para la prevención, detección y tratamiento de enfermedades comunes, así como para derivar a un especialista cuando la condición del paciente lo requiera."
+                        android:textColor="@color/texto_secundario"
+                        android:lineSpacingMultiplier="1.2"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="En tu Cita Médica"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/azul_primario"/>
+
+                    <TextView
+                        android:id="@+id/tvInfoCita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Durante la consulta, el médico evaluará tus síntomas, realizará un examen físico (toma de presión, auscultación, etc.), revisará tu historial y, si es necesario, solicitará exámenes de laboratorio o te recetará un tratamiento inicial."
+                        android:textColor="@color/texto_secundario"
+                        android:lineSpacingMultiplier="1.2"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctores Disponibles"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/texto_principal"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/azul_claro_fondo"
+                android:layout_marginBottom="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconDoctor1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_baseline_person_24"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="12dp"
+                        app:tint="@color/azul_secundario" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Alberto García"
+                        android:textColor="@color/texto_principal"
+                        android:layout_toEndOf="@id/iconDoctor1"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAgendar1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agendar"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/azul_claro_fondo"
+                android:layout_marginBottom="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconDoctor2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_baseline_person_24"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="12dp"
+                        app:tint="@color/azul_secundario" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dra. María Rodriguez"
+                        android:textColor="@color/texto_principal"
+                        android:layout_toEndOf="@id/iconDoctor2"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAgendar2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agendar"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

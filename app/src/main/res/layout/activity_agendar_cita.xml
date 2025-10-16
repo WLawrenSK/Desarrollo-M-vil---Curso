@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris_fondo_app"
+    tools:context=".AgendarCitaActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul_primario"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAgendar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Agendar Cita Médica"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paso 1: Selecciona la Especialidad"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Especialidad">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteEspecialidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paso 2: Elige un Doctor"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutDoctoresDisponibles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paso 3: Elige Fecha y Hora"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSeleccionarFecha"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Seleccionar Fecha"
+                app:icon="@drawable/event_24px"
+                app:iconTint="@color/azul_secundario" />
+
+            <TextView
+                android:id="@+id/tvFechaSeleccionada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/azul_secundario"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                tools:text="Sábado, 26 de Octubre de 2024"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupHorarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:chipSpacingHorizontal="8dp"
+                app:singleSelection="true">
+                <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="09:00 AM"/>
+                <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="09:30 AM"/>
+                <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10:00 AM"/>
+                <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="11:30 AM"/>
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paso 4: Describe tus Síntomas"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/texto_principal"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Describe brevemente cómo te sientes...">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSintomas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:minLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirmarCita"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:text="Confirmar Cita"
+                app:cornerRadius="16dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

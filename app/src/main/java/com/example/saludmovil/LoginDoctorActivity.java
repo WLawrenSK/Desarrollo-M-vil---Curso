@@ -1,73 +1,82 @@
 package com.example.saludmovil;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginDoctorActivity extends AppCompatActivity {
-    // Vamos a declarar las variables de los componentes de la interfaz
-    TextInputEditText edCamp, edClave;
-    Button btnLogin;
-    Button btnRegistrar;
 
+    TextInputEditText edCmp, edClave; // ¡Perfecto que ya lo hayas cambiado!
+    MaterialButton btnLogin, btnRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login_doctor);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
 
-        });
-        // Vinculamos lo que declaramos con los id de los componentes de la interfaz
-        edCamp = findViewById(R.id.editTextDoctorCmp);
+        edCmp = findViewById(R.id.editTextDoctorCodigo);
         edClave = findViewById(R.id.editTextDoctorClave);
         btnLogin = findViewById(R.id.buttonLoginDoctor);
         btnRegistrar = findViewById(R.id.textViewNuevoDoctor);
 
-        // Configuramos los listeners
-
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginDoctorActivity.this, RegistrarDoctorPaso1Activity.class);
-                startActivity(intent);
-
-            }
+        btnRegistrar.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginDoctorActivity.this, RegistrarDoctorPaso1Activity.class);
+            startActivity(intent);
         });
 
-        // Configuramos el listener para el botón de inicio de sesión
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String cmp = edCamp.getText().toString();
-                String clave = edClave.getText().toString();
-                BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
-                if (cmp.length() == 0 || clave.length()==0){
-                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+        btnLogin.setOnClickListener(v -> {
+            // 1. Nombramos la variable local para que sea 'cmp'
+            String cmp = edCmp.getText().toString().trim();
+            String clave = edClave.getText().toString().trim();
+            BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
+
+            if (cmp.isEmpty() || clave.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 2 ¡EL CAMBIO MÁS IMPORTANTE! Usamos el nuevo método por CMP
+            Cursor cursor = bd.loginDoctorPorCMP(cmp, clave);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                int idIndex = cursor.getColumnIndex("id");
+                int rolIndex = cursor.getColumnIndex("rol");
+                int usuarioId = cursor.getInt(idIndex);
+                String rol = cursor.getString(rolIndex);
+
+                if ("doctor".equals(rol)) {
+                    cursor.close();
+
+                    SharedPreferences sp = getSharedPreferences("datos_usuario", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putInt("id_usuario", usuarioId);
+                    editor.putString("rol_usuario", rol);
+                    editor.apply();
+
+                    Toast.makeText(getApplicationContext(), "Bienvenido, Doctor(a)", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(LoginDoctorActivity.this, InicioDoctorActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    if (bd.loginDoctor(cmp, clave) == 1){
-                        Toast.makeText(getApplicationContext(), "Bienvenido, Doctor(a)", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginDoctorActivity.this, InicioDoctorActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "CMP o clave incorrecta", Toast.LENGTH_SHORT).show();
-                    }
+                    cursor.close();
+                    Toast.makeText(getApplicationContext(), "Esta cuenta no pertenece a un doctor.", Toast.LENGTH_SHORT).show();
                 }
+
+            } else {
+                if(cursor != null) {
+                    cursor.close();
+                }
+                // 3. Actualizamos el mensaje de error
+                Toast.makeText(getApplicationContext(), "CMP o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
         });
     }

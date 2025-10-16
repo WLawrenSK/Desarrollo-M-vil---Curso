@@ -1,5 +1,11 @@
 package com.example.saludmovil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 // Esta clase será nuestro "cajón de herramientas" para funciones de validación.
 public class Validaciones {
 
@@ -38,6 +44,65 @@ public class Validaciones {
                 return true;
             return false; // Si alguna bandera no es 1, la contraseña no es válida.
         }
+    }
+
+
+    public static boolean esFechaNacimientoValida(String fechaStr) {
+        if (fechaStr == null || fechaStr.isEmpty()) {
+            return false;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        sdf.setLenient(false); // No permite fechas inválidas como 32/01/2023
+
+        try {
+            Date fechaNacimiento = sdf.parse(fechaStr);
+            Date fechaActual = new Date();
+
+            // 1. No puede ser una fecha futura
+            if (fechaNacimiento.after(fechaActual)) {
+                return false;
+            }
+
+            // 2. No puede tener más de 120 años
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -120);
+            Date fechaMinima = cal.getTime();
+            if (fechaNacimiento.before(fechaMinima)) {
+                return false;
+            }
+
+            // 3. Debe ser mayor de 18 años
+            cal.setTime(new Date());
+            cal.add(Calendar.YEAR, -18);
+            Date fechaMayorDeEdad = cal.getTime();
+            if (fechaNacimiento.after(fechaMayorDeEdad)) {
+                return false;
+            }
+
+        } catch (ParseException e) {
+            // Si el formato de la fecha es incorrecto (ej. "hola mundo")
+            return false;
+        }
+
+        // Si pasa todas las validaciones
+        return true;
+    }
+
+    public static String capitalizarPalabras(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return "";
+        }
+        String[] palabras = texto.toLowerCase().split(" ");
+        StringBuilder resultado = new StringBuilder();
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                resultado.append(Character.toUpperCase(palabra.charAt(0)))
+                        .append(palabra.substring(1))
+                        .append(" ");
+            }
+        }
+        return resultado.toString().trim();
     }
 
 }

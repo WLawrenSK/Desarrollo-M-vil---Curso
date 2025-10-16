@@ -5,96 +5,68 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrarDoctorPaso1Activity"
-    android:background="?attr/colorSurface">
+    android:background="@color/gris_fondo_app"
+    tools:context=".RegistrarDoctorPaso1Activity">
 
-    <RelativeLayout
-        android:id="@+id/headerLayoutRegDoc1"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarRegDoc1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        app:title="Registro Médico"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
-        <ImageButton
-            android:id="@+id/buttonAtrasRegDoc1"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Atrás"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"/>
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/stepperLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:background="@color/blanco"
+        app:layout_constraintTop_toBottomOf="@id/toolbarRegDoc1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:gravity="center">
+            android:text="Paso 1 de 2: Datos Personales"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/texto_principal"/>
 
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewTituloRegDoc1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Registro Médico"
-                android:textAppearance="?attr/textAppearanceHeadlineLarge"
-                android:textColor="?attr/colorPrimary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="48dp"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewSubtituloRegDoc1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Paso 1 de 2: Datos Personales"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:textColor="?attr/colorOnSurface"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/textViewTituloRegDoc1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-        </LinearLayout>
-    </RelativeLayout>
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:progress="50"
+            app:trackCornerRadius="8dp"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/headerLayoutRegDoc1"
+        app:layout_constraintTop_toBottomOf="@id/stepperLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:padding="24dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocDNI"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre Completo"
-                app:startIconDrawable="@drawable/ic_baseline_person_24">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextRegDocNombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:hint="Número de DNI"
+                app:counterEnabled="true"
+                app:counterMaxLength="8"
                 app:startIconDrawable="@drawable/ic_baseline_badge_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextRegDocDNI"
@@ -104,7 +76,32 @@
                     android:maxLength="8"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonVerificarDNIDoctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Verificar DNI con RENIEC"/>
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocNombre"
+                android:enabled="false"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Nombre Completo"
+                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRegDocNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocFecha"
+                android:enabled="false"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,11 +118,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocTelefono"
+                android:enabled="false"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="Teléfono"
+                android:hint="Teléfono Celular"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
                 app:startIconDrawable="@drawable/ic_baseline_phone_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextRegDocTelefono"
@@ -136,6 +137,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocCorreo"
+                android:enabled="false"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,11 +153,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocClave"
+                android:enabled="false"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Contraseña"
+                app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextRegDocClave"
@@ -164,11 +170,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRegDocConfirmarClave"
+                android:enabled="false"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Confirmar Contraseña"
+                app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_baseline_security_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextRegDocConfirmarClave"
@@ -179,11 +188,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonRegDocSiguiente"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:text="Siguiente"
-                android:textSize="20sp" />
+                android:paddingVertical="12dp"
+                android:textSize="16sp"
+                android:backgroundTint="@color/azul_primario"/>
         </LinearLayout>
     </ScrollView>
 
